@@ -14,6 +14,7 @@
     "@sanity/client": "^7.25.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^6.7.0",
+    "@sanity/webhook": "^4.0.4",
     "next": "16.1.4",
     "next-sanity": "^13.2.2",
     "react": "19.2.3",
