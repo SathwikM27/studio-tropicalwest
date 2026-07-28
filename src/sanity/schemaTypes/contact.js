@@ -6,6 +6,7 @@ const contact = {
     {
       name: "address",
       title: "Address / Location line",
+      description: "Keep to one line, about 50 characters.",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
@@ -30,6 +31,7 @@ const contact = {
     {
       name: "linkedinLabel",
       title: "LinkedIn display name",
+      description: "Short display name, one line.",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
