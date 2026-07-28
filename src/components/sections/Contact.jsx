@@ -1,6 +1,7 @@
 import Image from "next/image";
 import DotLogo from "@/components/ui/DotLogo";
 import Reveal from "@/components/ui/Reveal";
+import { getContactDetails } from "@/lib/sanity/queries";
 
 function PinIcon(props) {
   return (
@@ -67,7 +68,9 @@ function LinkedInIcon(props) {
   );
 }
 
-export default function Contact() {
+export default async function Contact() {
+  const contact = await getContactDetails();
+
   return (
     <section id="contact" className="relative overflow-hidden bg-ink py-20 md:py-28">
       <Image
@@ -97,12 +100,12 @@ export default function Contact() {
           <ul className="flex flex-col divide-y divide-line">
             <li className="flex items-center gap-3 py-3 text-sm text-ink">
               <PinIcon className="shrink-0 text-ink-soft" />
-              Bengaluru, India.
+              {contact.address}
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink">
               <PhoneIcon className="shrink-0 text-ink-soft" />
               <a
-                href="tel:+911234567890"
+                href={`tel:${contact.phone}`}
                 className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper transition-opacity hover:opacity-90"
               >
                 Call Us
@@ -110,24 +113,24 @@ export default function Contact() {
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink">
               <MailIcon className="shrink-0 text-ink-soft" />
-              <a href="mailto:studiotropicalwest@gmail.com" className="hover:text-accent">
-                studiotropicalwest@gmail.com
+              <a href={`mailto:${contact.email}`} className="hover:text-accent">
+                {contact.email}
               </a>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink">
               <InstagramIcon className="shrink-0 text-ink-soft" />
               <a
-                href="https://instagram.com/studiotropicalwest"
+                href={`https://instagram.com/${contact.instagramHandle}`}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-accent"
               >
-                @studiotropicalwest
+                @{contact.instagramHandle}
               </a>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink">
               <LinkedInIcon className="shrink-0 text-ink-soft" />
-              Tropical West
+              {contact.linkedinLabel}
             </li>
           </ul>
         </Reveal>
