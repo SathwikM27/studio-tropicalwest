@@ -1,6 +1,7 @@
 import Image from "next/image";
 import DotLogo from "@/components/ui/DotLogo";
 import Reveal from "@/components/ui/Reveal";
+import TrackedLink from "@/components/ui/TrackedLink";
 import { getContactDetails } from "@/lib/sanity/queries";
 
 function PinIcon(props) {
@@ -111,29 +112,38 @@ export default async function Contact() {
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
               <PhoneIcon className="shrink-0 text-ink-soft-fixed" />
-              <a
+              <TrackedLink
                 href={`tel:${contact.phone}`}
+                gaEvent="contact_click"
+                gaParams={{ method: "phone" }}
                 className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper-fixed transition-opacity hover:opacity-90"
               >
                 Call Us
-              </a>
+              </TrackedLink>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
               <MailIcon className="shrink-0 text-ink-soft-fixed" />
-              <a href={`mailto:${contact.email}`} className="hover:text-accent">
+              <TrackedLink
+                href={`mailto:${contact.email}`}
+                gaEvent="contact_click"
+                gaParams={{ method: "email" }}
+                className="hover:text-accent"
+              >
                 {contact.email}
-              </a>
+              </TrackedLink>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
               <InstagramIcon className="shrink-0 text-ink-soft-fixed" />
-              <a
+              <TrackedLink
                 href={`https://instagram.com/${contact.instagramHandle}`}
                 target="_blank"
                 rel="noreferrer noopener"
+                gaEvent="social_click"
+                gaParams={{ network: "instagram" }}
                 className="hover:text-accent"
               >
                 @{contact.instagramHandle}
-              </a>
+              </TrackedLink>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
               <LinkedInIcon className="shrink-0 text-ink-soft-fixed" />
