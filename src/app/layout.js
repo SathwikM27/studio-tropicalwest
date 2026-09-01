@@ -1,6 +1,9 @@
 import { Fraunces, Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
+
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -29,6 +32,7 @@ export default function RootLayout({ children }) {
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
+      {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
     </html>
   );
 }
