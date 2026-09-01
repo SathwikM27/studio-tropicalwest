@@ -29,7 +29,7 @@ export default async function Brands() {
                   alt={brand.name}
                   width={140}
                   height={56}
-                  className="h-10 w-auto object-contain grayscale opacity-70 transition-opacity hover:opacity-100 md:h-12"
+                  className="h-10 w-auto object-contain grayscale opacity-70 transition-opacity hover:opacity-100 dark:invert md:h-12"
                 />
               ) : (
                 <span className="text-sm font-medium uppercase tracking-wide text-ink-soft/70">

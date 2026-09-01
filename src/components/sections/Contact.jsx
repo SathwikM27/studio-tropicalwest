@@ -72,7 +72,10 @@ export default async function Contact() {
   const contact = await getContactDetails();
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-ink py-20 md:py-28">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-ink-fixed py-20 md:py-28"
+    >
       <Image
         src="/images/contact/topography.jpg"
         alt=""
@@ -81,44 +84,48 @@ export default async function Contact() {
         sizes="100vw"
         className="object-cover opacity-90"
       />
-      <div className="absolute inset-0 bg-ink/50" />
+      <div className="absolute inset-0 bg-ink-fixed/50" />
 
       <div className="relative mx-auto flex w-full max-w-lg flex-col items-center gap-8 px-6">
         <Reveal direction="up">
           <DotLogo size={32} tone="light" />
         </Reveal>
 
+        {/* This card is paired with the always-dark band above, so it stays
+            a fixed light "paper" surface in both themes rather than
+            adapting — otherwise it would blend into a dark page background
+            in dark mode and lose its contrast against the band. */}
         <Reveal
           direction="up"
           delay={90}
-          className="w-full rounded-3xl bg-paper px-6 py-8 shadow-xl md:px-10 md:py-10"
+          className="w-full rounded-3xl bg-paper-fixed px-6 py-8 shadow-xl md:px-10 md:py-10"
         >
-          <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-ink-soft">
+          <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-ink-soft-fixed">
             Contact Us:
           </p>
 
-          <ul className="flex flex-col divide-y divide-line">
-            <li className="flex items-center gap-3 py-3 text-sm text-ink">
-              <PinIcon className="shrink-0 text-ink-soft" />
+          <ul className="flex flex-col divide-y divide-line-fixed">
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <PinIcon className="shrink-0 text-ink-soft-fixed" />
               {contact.address}
             </li>
-            <li className="flex items-center gap-3 py-3 text-sm text-ink">
-              <PhoneIcon className="shrink-0 text-ink-soft" />
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <PhoneIcon className="shrink-0 text-ink-soft-fixed" />
               <a
                 href={`tel:${contact.phone}`}
-                className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper transition-opacity hover:opacity-90"
+                className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper-fixed transition-opacity hover:opacity-90"
               >
                 Call Us
               </a>
             </li>
-            <li className="flex items-center gap-3 py-3 text-sm text-ink">
-              <MailIcon className="shrink-0 text-ink-soft" />
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <MailIcon className="shrink-0 text-ink-soft-fixed" />
               <a href={`mailto:${contact.email}`} className="hover:text-accent">
                 {contact.email}
               </a>
             </li>
-            <li className="flex items-center gap-3 py-3 text-sm text-ink">
-              <InstagramIcon className="shrink-0 text-ink-soft" />
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <InstagramIcon className="shrink-0 text-ink-soft-fixed" />
               <a
                 href={`https://instagram.com/${contact.instagramHandle}`}
                 target="_blank"
@@ -128,8 +135,8 @@ export default async function Contact() {
                 @{contact.instagramHandle}
               </a>
             </li>
-            <li className="flex items-center gap-3 py-3 text-sm text-ink">
-              <LinkedInIcon className="shrink-0 text-ink-soft" />
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <LinkedInIcon className="shrink-0 text-ink-soft-fixed" />
               {contact.linkedinLabel}
             </li>
           </ul>

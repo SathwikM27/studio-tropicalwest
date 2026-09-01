@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import DotLogo from "@/components/ui/DotLogo";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import MobileNav from "./MobileNav";
 
 const NAV_LINKS = [
@@ -58,6 +59,7 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
         </nav>
 
         <MobileNav links={NAV_LINKS} />

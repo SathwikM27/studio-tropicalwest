@@ -40,18 +40,20 @@ export default function GalleryCard({ work, reversed }) {
             className="object-cover md:rounded-2xl"
           />
 
-          {/* Mobile-only: caption stays hidden until the image is tapped. */}
+          {/* Mobile-only: caption stays hidden until the image is tapped.
+              Sits on top of the photo's own dark scrim, so these stay fixed
+              light-on-dark regardless of site theme. */}
           <span
-            className={`absolute inset-x-0 bottom-0 flex flex-col gap-0.5 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent px-5 pb-5 pt-12 transition-all duration-300 md:hidden ${
+            className={`absolute inset-x-0 bottom-0 flex flex-col gap-0.5 bg-gradient-to-t from-ink-fixed/85 via-ink-fixed/35 to-transparent px-5 pb-5 pt-12 transition-all duration-300 md:hidden ${
               open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
             }`}
           >
-            <span className="font-display text-xl text-paper">{work.title}</span>
-            <span className="text-xs text-paper/80">{work.location}</span>
+            <span className="font-display text-xl text-paper-fixed">{work.title}</span>
+            <span className="text-xs text-paper-fixed/80">{work.location}</span>
           </span>
 
           <span
-            className={`absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-paper text-ink shadow-md transition-opacity duration-300 md:hidden ${
+            className={`absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-paper-fixed text-ink-fixed shadow-md transition-opacity duration-300 md:hidden ${
               open ? "opacity-0" : "opacity-100"
             }`}
           >

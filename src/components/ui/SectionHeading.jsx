@@ -9,7 +9,7 @@ export default function SectionHeading({
   className = "",
 }) {
   const alignment = align === "center" ? "text-center items-center" : "text-left items-start";
-  const subtitleTone = tone === "paper" ? "text-paper/75" : "text-ink-soft";
+  const subtitleTone = tone === "paper" ? "text-paper-fixed/75" : "text-ink-soft";
 
   return (
     <Reveal direction="up" className={`flex flex-col gap-3 ${alignment} ${className}`}>

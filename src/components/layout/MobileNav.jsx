@@ -3,12 +3,14 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import DotLogo from "@/components/ui/DotLogo";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function MobileNav({ links }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="md:hidden">
+    <div className="flex items-center gap-1 md:hidden">
+      <ThemeToggle />
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger
           aria-label="Open menu"
@@ -19,7 +21,7 @@ export default function MobileNav({ links }) {
         </Dialog.Trigger>
 
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/30 backdrop-blur-sm transition-opacity" />
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-ink-fixed/30 backdrop-blur-sm transition-opacity" />
           <Dialog.Content
             aria-describedby={undefined}
             className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xs flex-col gap-10 border-l border-line/60 bg-paper/60 px-8 py-8 shadow-xl backdrop-blur-xl backdrop-saturate-150"

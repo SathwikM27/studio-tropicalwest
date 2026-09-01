@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+/* Enables the `dark:` variant via a `.dark` class on <html> (set by
+   next-themes) instead of Tailwind v4's default `prefers-color-scheme`
+   media query, since the site has an explicit light/dark toggle. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Warm editorial palette, sampled from the studio's Figma + brand mark.
-     Swap these for exact hex values whenever the client finalizes them. */
+     Swap these for exact hex values whenever the client finalizes them.
+     These five tokens are theme-adaptive — redefined under .dark below. */
   --color-paper: #faf7f2;
   --color-paper-soft: #f1eee8;
   --color-ink: #1c1a17;
@@ -11,8 +17,32 @@
   --color-accent: #c2211d;
   --color-overlay: rgba(23, 20, 15, 0.6);
 
+  /* Fixed counterparts of paper/ink/ink-soft/line — intentionally constant
+     in both themes. Used only where paper/ink represent a literal brand
+     color rather than "page background" / "body text" (the always-dark
+     Footer + Contact bands, gallery photo-caption overlays, and the mobile
+     menu's dimming scrim) so those don't invert into unreadable combos
+     when the adaptive tokens flip for dark mode. */
+  --color-paper-fixed: #faf7f2;
+  --color-ink-fixed: #1c1a17;
+  --color-ink-soft-fixed: #57524a;
+  --color-line-fixed: #e6dfd3;
+
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
+
+  color-scheme: light;
+}
+
+.dark {
+  --color-paper: #17140f;
+  --color-paper-soft: #201c15;
+  --color-ink: #f3ede2;
+  --color-ink-soft: #ab9f8d;
+  --color-line: #35301f;
+  --color-accent: #e2453f;
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -22,6 +52,10 @@
   --color-ink-soft: var(--color-ink-soft);
   --color-line: var(--color-line);
   --color-accent: var(--color-accent);
+  --color-paper-fixed: var(--color-paper-fixed);
+  --color-ink-fixed: var(--color-ink-fixed);
+  --color-ink-soft-fixed: var(--color-ink-soft-fixed);
+  --color-line-fixed: var(--color-line-fixed);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -46,6 +80,13 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
 
 h1, h2, h3, h4 {

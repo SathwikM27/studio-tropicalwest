@@ -3,7 +3,7 @@ import Container from "./Container";
 const TONES = {
   paper: "bg-paper text-ink",
   soft: "bg-paper-soft text-ink",
-  dark: "bg-ink text-paper",
+  dark: "bg-ink-fixed text-paper-fixed",
 };
 
 export default function SectionWrapper({
