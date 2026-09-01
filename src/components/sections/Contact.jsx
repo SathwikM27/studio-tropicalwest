@@ -55,6 +55,23 @@ function InstagramIcon(props) {
   );
 }
 
+function WhatsAppIcon(props) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" {...props}>
+      <path
+        d="M9 15.75c-1.06 0-2.08-.28-2.97-.79L3 15.75l.82-3a5.9 5.9 0 0 1-.82-3A6.75 6.75 0 1 1 9 15.75Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.5 8.2c.4 1.9 1.9 3.3 3.7 3.7.6.13 1-.42.7-.95l-.4-.7a.55.55 0 0 0-.6-.26 2.9 2.9 0 0 1-2.15-2.15.55.55 0 0 0-.26-.6l-.7-.4c-.53-.3-1.08.1-.95.7.03.15.06.31.16.46Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 function LinkedInIcon(props) {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" {...props}>
@@ -69,8 +86,11 @@ function LinkedInIcon(props) {
   );
 }
 
+const WHATSAPP_MESSAGE = "Hi, I'd like to enquire about interior design services.";
+
 export default async function Contact() {
   const contact = await getContactDetails();
+  const whatsappNumber = contact.phone.replace(/[^\d]/g, "");
 
   return (
     <section
@@ -119,6 +139,19 @@ export default async function Contact() {
                 className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper-fixed transition-opacity hover:opacity-90"
               >
                 Call Us
+              </TrackedLink>
+            </li>
+            <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
+              <WhatsAppIcon className="shrink-0 text-ink-soft-fixed" />
+              <TrackedLink
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                gaEvent="contact_click"
+                gaParams={{ method: "whatsapp" }}
+                className="rounded-full bg-accent px-5 py-1.5 text-sm font-medium text-paper-fixed transition-opacity hover:opacity-90"
+              >
+                Chat on WhatsApp
               </TrackedLink>
             </li>
             <li className="flex items-center gap-3 py-3 text-sm text-ink-fixed">
